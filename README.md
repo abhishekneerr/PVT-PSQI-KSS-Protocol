@@ -13,6 +13,7 @@ This application is designed to run an experimental protocol using PyQt6. It fea
   - `demographic.py` - Demographic data form.
   - `psqi.py` - PSQI survey screens (before and after PVT).
   - `kss.py` - KSS survey screens (before and after PVT).
+  - `pvt_instructions.py` - Instructions screen for the PVT test.
   - `pvt.py` - The PVT experimental screen.
   - `ending.py` - The final screen concluding the experiment.
 
