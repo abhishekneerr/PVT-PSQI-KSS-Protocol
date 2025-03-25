@@ -1,0 +1,8 @@
+participant_id,event,reaction_time_ms,isi_delay,timestamp
+fads,true_press,4167,1847,1742814437.256523
+fads,true_press,2843,1486,1742814441.592583
+fads,true_press,1845,1585,1742814445.022872
+fads,true_press,11473,1881,1742814458.381243
+fads,true_press,5107,3321,1742814466.815076
+fads,true_press,5674,3777,1742814476.27141
+fads,true_press,8844,2338,1742814487.4601622
