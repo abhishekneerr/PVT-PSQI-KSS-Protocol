@@ -24,8 +24,8 @@ def create_main_window():
     app = QApplication(sys.argv)
     window = QWidget()
     window.setWindowTitle("Experiment Protocol")
-    window.setMinimumSize(1000, 800)
-    #window.showFullScreen()     #full screen mode
+    # window.setMinimumSize(1000, 800)
+    window.showFullScreen()     #full screen mode
     
     stack = QStackedWidget()
     stack.addWidget(create_welcome_screen(stack))
