@@ -13,6 +13,7 @@ This application is designed to run an experimental protocol using PyQt6. It fea
   - `demographic.py` - Demographic data form.
   - `psqi.py` - PSQI survey screens (before and after PVT).
   - `kss.py` - KSS survey screens (before and after PVT).
+  - `pvt_instructions.py` - Instructions screen for the PVT test.
   - `pvt.py` - The PVT experimental screen.
   - `ending.py` - The final screen concluding the experiment.
 
@@ -30,9 +31,9 @@ This application is designed to run an experimental protocol using PyQt6. It fea
    ```python3 -m venv .venv```
 
 4. Activate the virtual environment:
-    source .venv/bin/activate
+    ```source .venv/bin/activate```
 5. Install the required dependencies:
-    pip install -r requirements.txt
+    ```pip install -r requirements.txt```
 
 ## Running the Application
 To launch the application, run the following command from the root directory of the project:
