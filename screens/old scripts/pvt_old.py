@@ -12,12 +12,11 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %
 from utils.data_handler import save_to_csv
 from src.state import state_manager
 
+
 import time
 import random
 from PyQt6.QtCore import QTimer, Qt
 
-# 1) Import your translation helper
-from utils.translation_handler import tr
 
 def start_pvt_logic(label, test_duration_minutes=1, isi_min=1, isi_max=5, update_interval=10):
     """
@@ -72,7 +71,7 @@ def start_pvt_logic(label, test_duration_minutes=1, isi_min=1, isi_max=5, update
     def update_display():
         # If the test hasn't started, show the starting message.
         if not state["started"]:
-            label.setText(tr("pvt_click_to_start_in_display"))
+            label.setText("Click on the screen to start the test")
             return
 
         current_time = time.time()
@@ -163,7 +162,6 @@ def start_pvt_logic(label, test_duration_minutes=1, isi_min=1, isi_max=5, update
         "timer": timer,
         "logs": logs,
     }
-
 def create_experiment_PVT_screen(stack, trial_duration_minutes=1):
     """Creates the Experiment Trials Screen (PVT), screen #5"""
     screen = QWidget()
@@ -172,8 +170,7 @@ def create_experiment_PVT_screen(stack, trial_duration_minutes=1):
     participant_id = state_manager.get_participant_id()
 
     # Message label to prompt user to click
-    from utils.translation_handler import tr
-    message_label = QLabel(tr("pvt_click_to_start_label"))
+    message_label = QLabel("Click on the screen to start")
     message_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
     message_label.setStyleSheet("font-size: 20px; font-weight: bold;")
     layout.addWidget(message_label)
@@ -192,7 +189,7 @@ def create_experiment_PVT_screen(stack, trial_duration_minutes=1):
     # back_button.clicked.connect(lambda: stack.setCurrentIndex(4))  # Go back to KSS
     # nav_layout.addWidget(back_button)
 
-    next_button = QPushButton(tr("pvt_next_button"))
+    next_button = QPushButton("Next")
     next_button.setVisible(False)  # Hide initially
     next_button.clicked.connect(lambda: stack.setCurrentIndex(6))  # Move to PSQI/KSS (Post)
     nav_layout.addWidget(next_button)
@@ -205,7 +202,7 @@ def create_experiment_PVT_screen(stack, trial_duration_minutes=1):
 
     def finish_test():
         # This is called by the one-shot timer when the test duration has elapsed.
-        message_label.setText(tr("pvt_thank_you"))
+        message_label.setText("Thank you for taking the test, click next to proceed.")
         message_label.setVisible(True)
         next_button.setVisible(True)
         pvt_data["timer"].stop()  # Stop the PVT logic timer

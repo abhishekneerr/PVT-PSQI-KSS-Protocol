@@ -1,3 +1,7 @@
+# user added files and folders
+participants_data/
+participants_data
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

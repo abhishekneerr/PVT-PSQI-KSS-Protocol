@@ -1,22 +1,33 @@
+# src/state.py
+
 import logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+from PyQt6.QtCore import QObject, pyqtSignal
 
+class StateManager(QObject):
+    languageChanged = pyqtSignal()  # <-- This signal will be emitted whenever language changes
 
-
-class StateManager:
     def __init__(self):
-        self.participant_id = ""
+        super().__init__()
+        self.language = "en"
+        self.participant_id = None
 
-    def set_participant_id(self, participant_id):
-        self.participant_id = participant_id
-        # logging.debug(f"Participant ID set to {participant_id}")
+    def set_language(self, lang_code):
+        self.language = lang_code
+        # After changing language, emit signal so all translated widgets can refresh
+        self.languageChanged.emit()
+
+    def get_language(self):
+        return self.language
+
+    def set_participant_id(self, pid):
+        self.participant_id = pid
 
     def get_participant_id(self):
-        # logging.debug(f"Getting participant ID: {self.participant_id}")
         return self.participant_id
 
 
-# Create a single global instance of StateManager
+# Create the shared instance
 state_manager = StateManager()
 
 

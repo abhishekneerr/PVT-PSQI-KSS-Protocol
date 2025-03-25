@@ -1,0 +1,240 @@
+{
+    "en": {
+      "welcome_message": "Hello, thank you for taking part in this test! \nThis test is part of a research study. \nPlease read the instructions carefully.",
+      "next_button": "Next",
+      "id_label": "ID:",
+      "age_label": "Age:",
+      "gender_label": "Gender:",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other",
+      "country_label": "Country:",
+      "back_button": "Back",
+      "submit_button": "Submit",
+      "error_id_required": "Error: ID is required!",
+      "error_gender_required": "Error: Please select a gender!",
+      "error_country_required": "Error: Country is required!",
+      "success_submission": "Data submitted, please click next to proceed.",
+
+
+      "psqi_instructions_1": "INSTRUCTIONS:\n\nThe following questions relate to your usual sleep habits during the past month only.\nYour answers should indicate the most accurate reply for the majority of days and nights in the past month.\nPlease answer all questions.",
+      "psqi_instructions_2": "For each of the remaining questions, check the one best response. Please answer all questions.",
+      "psqi_part1_q1_weekday": "1. During the past month, what time have you usually gone to bed on weekdays?",
+      "psqi_part1_q1_placeholder": "Enter time in 24-hour format (HH:MM), e.g. 22:30",
+      "psqi_part1_q2_weekend": "2. During the past month, what time have you usually gone to bed on weekends?",
+      "psqi_part1_q2_placeholder": "Enter time in 24-hour format (HH:MM), e.g. 00:30",
+      "psqi_part1_q3_wakeup_weekday": "3. During the past month, what time have you usually gotten up on weekdays?",
+      "psqi_part1_q3_placeholder": "Enter time in 24-hour format (HH:MM), e.g. 07:00",
+      "psqi_part1_q4_wakeup_weekend": "4. During the past month, what time have you usually gotten up on weekends?",
+      "psqi_part1_q4_placeholder": "Enter time in 24-hour format (HH:MM), e.g. 09:00",
+      "psqi_part1_q5_sleep_latency": "5. During the past month, how long (in minutes) has it usually taken you to fall asleep each night?",
+      "psqi_part1_q5_placeholder": "Enter number of minutes, e.g. 15",
+      "psqi_part1_q6_actual_sleep": "6. During the past month, how many hours of actual sleep did you get at night (not just time in bed)?",
+      "psqi_part1_q6_placeholder": "Enter total sleep duration in hours and minutes, e.g. 7:30 (HH:MM)",
+      
+      "psqi_part2_header": "5. During the past month, how often have you had trouble sleeping because you ...",
+      "psqi_part2_a": "a) Cannot get to sleep within 30 minutes",
+      "psqi_part2_b": "b) Wake up in the middle of the night or early morning",
+      "psqi_part2_c": "c) Have to get up to use the bathroom",
+      "psqi_part2_d": "d) Cannot breathe comfortably",
+      "psqi_part2_e": "e) Cough or snore loudly",
+      "psqi_part2_f": "f) Feel too cold",
+      "psqi_part2_g": "g) Feel too hot",
+      "psqi_part2_h": "h) Had bad dreams",
+      "psqi_part2_i": "i) Have pain",
+      "psqi_part2_j": "j) Other reason(s), please describe:",
+      "psqi_part2_j_placeholder": "Describe your reason(s)...",
+      "psqi_part2_frequency": "How often during the past month have you had trouble sleeping because of this?",
+      "psqi_part2_instruction": "For each of the remaining questions, check the one best response. Please answer all questions.",
+      "psqi_answer_not_during_past_month": "Not during the past month",
+      "psqi_answer_less_than_once_week": "Less than once a week",
+      "psqi_answer_once_twice_week": "Once or twice a week",
+      "psqi_answer_three_or_more_week": "Three or more times a week",
+      
+      "psqi_q6_label": "6. During the past month, how would you rate your sleep quality overall?",
+      "psqi_q6_choices_very_good": "Very good",
+      "psqi_q6_choices_fairly_good": "Fairly good",
+      "psqi_q6_choices_fairly_bad": "Fairly bad",
+      "psqi_q6_choices_very_bad": "Very bad",
+      
+      "psqi_q7_label": "7. During the past month, how often have you taken medicine to help you sleep (prescribed or 'over the counter')?",
+      
+      "psqi_q8_label": "8. During the past month, how often have you had trouble staying awake while driving, eating meals, or engaging in social activity?",
+      
+      "psqi_q9_label": "9. During the past month, how much of a problem has it been for you to keep up enough enthusiasm to get things done?",
+      "psqi_q9_no_problem": "No problem at all",
+      "psqi_q9_slight_problem": "Only a slight problem",
+      "psqi_q9_somewhat_problem": "Somewhat of a problem",
+      "psqi_q9_very_big_problem": "A very big problem",
+      
+      "psqi_q10_label": "10. Do you have a bed partner or room mate?",
+      "psqi_q10_no_partner": "No bed partner or room mate",
+      "psqi_q10_other_room": "Partner/room mate in other room",
+      "psqi_q10_same_room_not_bed": "Partner in same room, but not same bed",
+      "psqi_q10_same_bed": "Partner in same bed",
+      
+      "psqi_q11_label": "11. If you have a room mate or bed partner, ask him/her how often in the past month you have had ... ...",
+      "psqi_q11_a": "a) Loud snoring",
+      "psqi_q11_b": "b) Long pauses between breaths while asleep",
+      "psqi_q11_c": "c) Legs twitching or jerking while you sleep",
+      "psqi_q11_d": "d) Episodes of disorientation or confusion during sleep",
+      "psqi_q11_e_label": "e) Other restlessness while you sleep;",
+      "psqi_q11_e_placeholder": "please describe ...",
+      "psqi_q11_frequency": "How often during the past month have you faced this?",
+      
+      "psqi_submit_button": "Submit",
+      "psqi_submit_success": "Your responses have been submitted successfully! Click Next to proceed.",
+
+
+      "kss_label": "How sleepy do you feel right now?",
+      "kss_option_1": "Extremely alert",
+      "kss_option_2": "Very alert",
+      "kss_option_3": "Alert",
+      "kss_option_4": "Rather alert",
+      "kss_option_5": "Neither alert nor sleepy",
+      "kss_option_6": "Some signs of sleepiness",
+      "kss_option_7": "Sleepy, but no effort to keep awake",
+      "kss_option_8": "Sleepy, but some effort to keep awake",
+      "kss_option_9": "Very sleepy, great effort to keep awake, fighting sleep",
+      "kss_option_10": "Extremely sleepy, can't keep awake",
+
+      "kss_submit_button": "Submit",
+      "kss_next_button": "Next",
+      "kss_error_id_required": "Error: ID is required!",
+      "kss_fill_required": "Please fill all required questions (*)",
+      "kss_submit_success": "Your responses have been submitted successfully! Click Next to proceed.",
+      
+      "pvt_instructions_text": "In this section, you will complete a reaction time task.\n\nWhen the counter appears on the screen, press the SPACEBAR as quickly as possible.\n\nPress the Next button to begin the task.",
+
+      "pvt_click_to_start_label": "Click on the screen to start",
+      "pvt_click_to_start_in_display": "Click on the screen to start the test",
+      "pvt_thank_you": "Thank you for taking the test, click next to proceed.",
+      "pvt_next_button": "Next",
+
+      "ending_thankyou": "Thank you for participating in this study!",
+      "ending_exit_button": "Exit"
+
+    },
+    "fr": {
+      "welcome_message": "Bonjour, merci de participer à ce test ! \n Ce test fait partie d'une étude de recherche. \n Veuillez lire attentivement les instructions.",
+      "next_button": "Suivant",
+      "id_label": "Identifiant :",
+      "age_label": "Âge :",
+      "gender_label": "Genre :",
+      "male": "Homme",
+      "female": "Femme",
+      "other": "Autre",
+      "country_label": "Pays :",
+      "back_button": "Retour",
+      "submit_button": "Soumettre",
+      "error_id_required": "Erreur : l'identifiant est requis !",
+      "error_gender_required": "Erreur : veuillez sélectionner un genre !",
+      "error_country_required": "Erreur : le pays est requis !",
+      "success_submission": "Données enregistrées, veuillez cliquer sur Suivant pour continuer.",
+      "psqi_instructions_1": "INSTRUCTIONS:\n\nLes questions suivantes ont trait à vos habitudes de sommeil uniquement au cours du dernier mois.\nVos réponses doivent indiquer ce qui correspond à la majorité des jours et des nuits pendant le dernier mois.\nVeuillez répondre à toutes les questions.",
+      "psqi_instructions_2": "Pour chacune des questions suivantes, cochez la réponse qui convient le mieux. Veuillez répondre à toutes les questions.",
+      "psqi_part1_q1_weekday": "1. Au cours du dernier mois, à quelle heure vous êtes-vous habituellement couché les jours de semaine (dimanche à jeudi) ?",
+      "psqi_part1_q1_placeholder": "Entrez l'heure au format 24 heures (HH:MM), ex. 22:30",
+      "psqi_part1_q2_weekend": "2. Au cours du dernier mois, à quelle heure vous êtes-vous habituellement couché les week-ends (vendredi et samedi) ?",
+      "psqi_part1_q2_placeholder": "Entrez l'heure au format 24 heures (HH:MM), ex. 00:30",
+      "psqi_part1_q3_wakeup_weekday": "3. Au cours du dernier mois, à quelle heure vous êtes-vous habituellement levé les jours de semaine (lundi à vendredi) ?",
+      "psqi_part1_q3_placeholder": "Entrez l'heure au format 24 heures (HH:MM), ex. 07:00",
+      "psqi_part1_q4_wakeup_weekend": "4. Au cours du dernier mois, à quelle heure vous êtes-vous habituellement levé le week-end (samedi et dimanche) ?",
+      "psqi_part1_q4_placeholder": "Entrez l'heure au format 24 heures (HH:MM), ex. 09:00",
+      "psqi_part1_q5_sleep_latency": "5. Au cours du dernier mois, combien de temps (en minutes) vous a-t-il habituellement fallu pour vous endormir chaque nuit ?",
+      "psqi_part1_q5_placeholder": "Entrez un nombre de minutes, ex. 15",
+      "psqi_part1_q6_actual_sleep": "6. Au cours du dernier mois, combien d'heures de sommeil effectif avez-vous eu la nuit (pas seulement le temps passé au lit) ?",
+      "psqi_part1_q6_placeholder": "Entrez la durée totale de sommeil en heures et minutes, ex. 7:30 (HH:MM)",
+
+
+      "psqi_part2_header": "5. Au cours du dernier mois, à quelle fréquence avez-vous eu des troubles du sommeil parce que ...",
+
+      "psqi_part2_a": "a) Vous n’avez pas pu vous endormir en moins de 30 min",
+      "psqi_part2_b": "b) Vous vous êtes réveillé au milieu de la nuit ou trop tôt le matin",
+      "psqi_part2_c": "c) Vous avez dû vous lever pour aller aux toilettes",
+      "psqi_part2_d": "d) Vous n’avez pas pu respirer correctement",
+      "psqi_part2_e": "e) Vous avez toussé ou ronflé bruyamment",
+      "psqi_part2_f": "f) Vous avez eu trop froid",
+      "psqi_part2_g": "g) Vous avez eu trop chaud",
+      "psqi_part2_h": "h) Vous avez fait de mauvais rêves",
+      "psqi_part2_i": "i) Vous avez eu des douleurs",
+      "psqi_part2_j": "j) Pour d’autre(s) raison(s). Donnez une description :",
+      "psqi_part2_j_placeholder": "Décrivez votre / vos raison(s)...",
+      "psqi_part2_frequency": "Indiquez la fréquence des troubles du sommeil pour ces raisons :",
+      "psqi_part2_instruction": "Pour chacune des questions restantes, cochez la meilleure réponse. Veuillez répondre à toutes les questions.",
+
+
+      "psqi_answer_not_during_past_month": "Pas au cours du dernier mois",
+      "psqi_answer_less_than_once_week": "Moins d’une fois par semaine",
+      "psqi_answer_once_twice_week": "Une ou deux fois par semaine",
+      "psqi_answer_three_or_more_week": "Trois ou quatre fois par semaine",
+
+      "psqi_q6_label": "6. Au cours du dernier mois, comment évalueriez-vous globalement la qualité de votre sommeil ?",
+      "psqi_q6_choices_very_good": "Très bonne",
+      "psqi_q6_choices_fairly_good": "Assez bonne",
+      "psqi_q6_choices_fairly_bad": "Assez mauvaise",
+      "psqi_q6_choices_very_bad": "Très mauvaise",
+
+
+      "psqi_q7_label": "7. Au cours du dernier mois, à quelle fréquence avez-vous pris des médicaments (sur ordonnance ou en vente libre) pour favoriser votre sommeil ?",
+
+
+      "psqi_q8_label": "8. Au cours du dernier mois, à quelle fréquence avez-vous eu des difficultés à rester éveillé(e) pendant que vous conduisiez, preniez vos repas, ou participiez à une activité sociale ?",
+
+
+      "psqi_q9_label": "9. Au cours du dernier mois, à quel degré cela a-t-il été un problème pour vous d’avoir assez d’enthousiasme pour accomplir ce que vous aviez à faire ?",
+      "psqi_q9_no_problem": "Pas du tout un problème",
+      "psqi_q9_slight_problem": "Seulement un tout petit problème",
+      "psqi_q9_somewhat_problem": "Un certain problème",
+      "psqi_q9_very_big_problem": "Un très gros problème",
+
+
+      "psqi_q10_label": "10. Avez-vous un conjoint ou un camarade de chambre ?",
+      "psqi_q10_no_partner": "Ni l’un ni l’autre",
+      "psqi_q10_other_room": "Oui, mais dans une autre chambre",
+      "psqi_q10_same_room_not_bed": "Oui, dans la même chambre mais pas dans le même lit",
+      "psqi_q10_same_bed": "Oui, dans le même lit",
+
+
+      "psqi_q11_label": "11. Si vous avez un camarade de chambre ou un conjoint, demandez-lui à quelle fréquence au cours du dernier mois vous avez eu …",
+      "psqi_q11_a": "a) Des ronflements bruyants",
+      "psqi_q11_b": "b) De longues pauses dans la respiration pendant votre sommeil",
+      "psqi_q11_c": "c) Des mouvements ou secousses des jambes pendant votre sommeil",
+      "psqi_q11_d": "d) Des épisodes de désorientation ou de confusion pendant votre sommeil",
+      "psqi_q11_e_label": "e) Autre agitation pendant votre sommeil ;",
+      "psqi_q11_e_placeholder": "veuillez décrire ...",
+      "psqi_q11_frequency": "À quelle fréquence au cours du dernier mois avez-vous fait face à cela ?",
+
+
+      "psqi_submit_button": "Soumettre",
+      "psqi_submit_success": "Vos réponses ont été enregistrées avec succès ! Cliquez sur Suivant pour continuer.",
+
+      "kss_label": "À quel point vous sentez-vous somnolent en ce moment ?",
+      "kss_option_1": "Extrêmement alerte",
+      "kss_option_2": "Très alerte",
+      "kss_option_3": "Alerte",
+      "kss_option_4": "Plutôt alerte",
+      "kss_option_5": "Ni alerte ni somnolent",
+      "kss_option_6": "Quelques signes de somnolence",
+      "kss_option_7": "Somnolent, mais pas d'effort pour rester éveillé",
+      "kss_option_8": "Somnolent, mais un certain effort pour rester éveillé",
+      "kss_option_9": "Très somnolent, grand effort pour rester éveillé, lutter contre le sommeil",
+      "kss_option_10": "Extrêmement somnolent, impossible de rester éveillé",
+      
+      "kss_submit_button": "Soumettre",
+      "kss_next_button": "Suivant",
+      "kss_error_id_required": "Erreur : l'ID est requis !",
+      "kss_fill_required": "Veuillez remplir toutes les questions requises (*)",
+      "kss_submit_success": "Vos réponses ont été enregistrées avec succès ! Cliquez sur Suivant pour continuer.",
+
+      "pvt_instructions_text": "Dans cette section, vous allez effectuer un test de temps de réaction.\n\nLorsque le compteur apparaît à l’écran, appuyez sur la BARRE D’ESPACE le plus rapidement possible.\n\nAppuyez sur le bouton Suivant pour commencer le test.",
+    
+      "pvt_click_to_start_label": "Cliquez sur l'écran pour commencer",
+      "pvt_click_to_start_in_display": "Cliquez sur l'écran pour démarrer le test",
+      "pvt_thank_you": "Merci d'avoir passé le test, cliquez sur Suivant pour continuer.",
+      "pvt_next_button": "Suivant",
+      "ending_thankyou": "Merci d’avoir participé à cette étude !",
+      "ending_exit_button": "Quitter"
+    }
+}
+  
