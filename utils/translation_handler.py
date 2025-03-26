@@ -18,3 +18,27 @@ except FileNotFoundError:
 def tr(key):
     lang = state_manager.get_language()
     return TRANSLATIONS.get(lang, {}).get(key, key)
+
+# Load the translations
+with open("utils/translations.json", encoding="utf-8") as f:
+    translations = json.load(f)
+
+def get_translation_key_by_value(displayed_value, current_lang):
+    """
+    Given a displayed translation (e.g., in French), return the corresponding translation key.
+    """
+    for key, value in translations[current_lang].items():
+        if value == displayed_value:
+            return key
+    return None
+
+def get_english_from_displayed(displayed_value):
+    """
+    Given a translated value shown to the user (e.g., French),
+    find and return the English version.
+    """
+    current_lang = state_manager.get_language()
+    key = get_translation_key_by_value(displayed_value, current_lang)
+    if key and key in translations["en"]:
+        return translations["en"][key]
+    return displayed_value  # fallback if not found

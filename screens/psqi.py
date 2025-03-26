@@ -12,7 +12,7 @@ from utils.data_handler import save_to_csv
 from src.state import state_manager
 
 # Import the translation function
-from utils.translation_handler import tr
+from utils.translation_handler import tr, get_english_from_displayed
 # Import your custom translated widgets
 from utils.translated_widgets import TranslatedLabel, TranslatedButton, TranslatedRadioButton, TranslatedLineEdit
 
@@ -329,7 +329,7 @@ def create_psqi_beforePVT_screen(stack):
     # Navigation Buttons
     nav_layout = QHBoxLayout()
 
-    submit_button = QPushButton(tr("psqi_submit_button"))
+    submit_button = TranslatedButton("psqi_submit_button")
 
     def handle_submit():
         # Collect the data from the form
@@ -349,14 +349,17 @@ def create_psqi_beforePVT_screen(stack):
         # Collect data for text inputs
         for input_field, label in input_field_map.items():
             if isinstance(input_field, QLineEdit):
-                form_data[label.text()] = input_field.text()
+                question_en = get_english_from_displayed(label.text())
+                form_data[question_en] = input_field.text()
 
         # Collect data for radio button selections
         for button_group, label in input_field_map.items():
             if isinstance(button_group, QButtonGroup):
                 selected_button = button_group.checkedButton()
                 if selected_button:
-                    form_data[label.text()] = selected_button.text()
+                    question_en = get_english_from_displayed(label.text())
+                    answer_en = get_english_from_displayed(selected_button.text())
+                    form_data[question_en] = answer_en
 
         if not participant_id:
             submission_message.setText("Error: ID is required!")
@@ -373,7 +376,7 @@ def create_psqi_beforePVT_screen(stack):
     submit_button.clicked.connect(handle_submit)
     nav_layout.addWidget(submit_button)
 
-    next_button = QPushButton(tr("next_button"))
+    next_button = TranslatedButton("next_button")
     next_button.setEnabled(False)
     next_button.clicked.connect(lambda: stack.setCurrentIndex(3))
     nav_layout.addWidget(next_button)

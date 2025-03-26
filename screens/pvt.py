@@ -11,15 +11,12 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %
 
 from utils.data_handler import save_to_csv
 from src.state import state_manager
-
-import time
-import random
-from PyQt6.QtCore import QTimer, Qt
-
-# 1) Import your translation helper
+from utils.translated_widgets import (
+    TranslatedLabel, TranslatedButton
+)
 from utils.translation_handler import tr
 
-def start_pvt_logic(label, test_duration_minutes=5, isi_min=1, isi_max=5, update_interval=10):
+def start_pvt_logic(label, test_duration_minutes=2, isi_min=1, isi_max=5, update_interval=10):
     """
     Sets up the PVT logic using the provided label widget.
     Logs both true and false key press events.
@@ -41,15 +38,11 @@ def start_pvt_logic(label, test_duration_minutes=5, isi_min=1, isi_max=5, update
          "timer": the QTimer instance driving the logic.
          "logs": a list holding log entries.
     """
-    # Hard-coded participant_id and logs list.
-    #participant_id = "XT1010"
     participant_id = state_manager.get_participant_id()
-    # log the participant ID in console using the logging module
     logging.info(f"Participant ID: {participant_id}")
     print(f"Participant ID: {participant_id}")
     logs = []
     
-    # Internal state for the PVT logic stored in a closure.
     state = {
         "started": False,
         "test_start_time": None,
@@ -72,6 +65,7 @@ def start_pvt_logic(label, test_duration_minutes=5, isi_min=1, isi_max=5, update
     def update_display():
         # If the test hasn't started, show the starting message.
         if not state["started"]:
+            # Simpler approach: we dynamically set the text using `tr(...)`.
             label.setText(tr("pvt_click_to_start_in_display"))
             return
 
@@ -90,6 +84,7 @@ def start_pvt_logic(label, test_duration_minutes=5, isi_min=1, isi_max=5, update
                 state["trial_state"] = "active"
                 state["stimulus_start_time"] = current_time
                 print(f"Stimulus presented. ISI delay was: {state['isi_delay']} ms. Timer started.")
+            # Keep showing "0000" until stimulus starts
             label.setText("0000")
         elif state["trial_state"] == "active":
             elapsed_stimulus_ms = int((current_time - state["stimulus_start_time"]) * 1000)
@@ -101,9 +96,6 @@ def start_pvt_logic(label, test_duration_minutes=5, isi_min=1, isi_max=5, update
         It expects a QKeyEvent.
         Logs true key presses (with reaction time) and false key presses.
         """
-
-        participant_id = state_manager.get_participant_id()
-
         if event.key() == Qt.Key.Key_Space:
             current_time = time.time()
             if not state["started"]:
@@ -120,10 +112,9 @@ def start_pvt_logic(label, test_duration_minutes=5, isi_min=1, isi_max=5, update
                     "timestamp": current_time,
                 }
                 logs.append(log_entry)
-                # Save the latest entry immediately.
                 save_to_csv(participant_id, "PVT", log_entry)
                 print(f"True press: Reaction time = {reaction_time} ms. Log: {log_entry}")
-                # Restart the trial.
+                # Restart trial
                 state["trial_state"] = "waiting"
                 state["waiting_start_time"] = current_time
                 state["isi_delay"] = random.randint(int(isi_min * 1000), int(isi_max * 1000))
@@ -136,10 +127,8 @@ def start_pvt_logic(label, test_duration_minutes=5, isi_min=1, isi_max=5, update
                     "timestamp": current_time,
                 }
                 logs.append(log_entry)
-                # Save the latest entry immediately.
                 save_to_csv(participant_id, "PVT", log_entry)
                 print(f"False press: Key pressed during inactive period. Log: {log_entry}")
-
 
     def pvt_mouse_press(event):
         """
@@ -151,12 +140,10 @@ def start_pvt_logic(label, test_duration_minutes=5, isi_min=1, isi_max=5, update
             state["started"] = True
             initialize_state()
 
-    # Set up the timer that drives the display updates.
     timer = QTimer()
     timer.timeout.connect(update_display)
-    timer.start(update_interval)  # update interval in ms
+    timer.start(update_interval)
 
-    # Return the event handler functions and logs.
     return {
         "pvt_key_press": pvt_key_press,
         "pvt_mouse_press": pvt_mouse_press,
@@ -164,74 +151,69 @@ def start_pvt_logic(label, test_duration_minutes=5, isi_min=1, isi_max=5, update
         "logs": logs,
     }
 
-def create_experiment_PVT_screen(stack, trial_duration_minutes=5):
+def create_experiment_PVT_screen(stack, trial_duration_minutes=1): # CHANGE here for trial duration
     """Creates the Experiment Trials Screen (PVT), screen #5"""
     screen = QWidget()
     layout = QVBoxLayout()
 
     participant_id = state_manager.get_participant_id()
 
-    # Message label to prompt user to click
-    from utils.translation_handler import tr
-    message_label = QLabel(tr("pvt_click_to_start_label"))
+    # This label is for the "Click on the screen to start" or "Thank you" messages.
+    message_label = TranslatedLabel("pvt_click_to_start_label")
     message_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
     message_label.setStyleSheet("font-size: 20px; font-weight: bold;")
     layout.addWidget(message_label)
 
-    # Counter label (hidden initially)
+    # This label is used to display the running timer (like "0000" or reaction time).
     counter_label = QLabel("0000")
     counter_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
     counter_label.setStyleSheet("font-size: 40px; font-weight: bold;")
-    counter_label.setVisible(False)  # Initially hidden
+    counter_label.setVisible(False)  # Hidden until test starts
     layout.addWidget(counter_label)
 
-    # Navigation Buttons (Initially hidden)
+    # Navigation (hidden until test ends)
     nav_layout = QHBoxLayout()
-    # back_button = QPushButton("Back")
-    # back_button.setVisible(False)  # Hide initially
-    # back_button.clicked.connect(lambda: stack.setCurrentIndex(4))  # Go back to KSS
-    # nav_layout.addWidget(back_button)
-
-    next_button = QPushButton(tr("pvt_next_button"))
-    next_button.setVisible(False)  # Hide initially
-    next_button.clicked.connect(lambda: stack.setCurrentIndex(6))  # Move to PSQI/KSS (Post)
+    next_button = TranslatedButton("pvt_next_button")
+    next_button.setVisible(False)
+    next_button.clicked.connect(lambda: stack.setCurrentIndex(6))  # Move to next screen
     nav_layout.addWidget(next_button)
-
     layout.addLayout(nav_layout)
+
     screen.setLayout(layout)
 
-    # Start PVT logic
-    pvt_data = start_pvt_logic(counter_label, test_duration_minutes=5)
+    # 1) Start PVT logic
+    pvt_data = start_pvt_logic(
+        label=counter_label,
+        test_duration_minutes=trial_duration_minutes
+    )
 
     def finish_test():
-        # This is called by the one-shot timer when the test duration has elapsed.
-        message_label.setText(tr("pvt_thank_you"))
+        # Called when the one-shot timer finishes (trial_duration_minutes)
+        message_label.setTranslationKey("pvt_thank_you")
         message_label.setVisible(True)
         next_button.setVisible(True)
-        pvt_data["timer"].stop()  # Stop the PVT logic timer
-        # back_button.setVisible(True)  # Show the back button
-        # hide the counter label
+        pvt_data["timer"].stop()
         counter_label.setVisible(False)
 
-    # Function to handle mouse press (start the test when the screen is clicked)
     def on_mouse_press(event):
+        # Start the test if it hasn't started
         if not pvt_data.get("test_started", False):
             pvt_data["test_started"] = True
-            # Schedule a one-shot timer that fires exactly after the trial duration (in ms)
+            # After test_duration_minutes * 60 sec
             QTimer.singleShot(trial_duration_minutes * 60 * 1000, finish_test)
-        pvt_data["pvt_mouse_press"](event)
-        message_label.setVisible(False)  # Hide the start message
-        counter_label.setVisible(True)  # Show the counter when the test starts
 
-    # Function to handle key press (for spacebar to register a key event)
+        pvt_data["pvt_mouse_press"](event)
+        # Hide the "Click to start" label, show the timer
+        message_label.setVisible(False)
+        counter_label.setVisible(True)
+
     def on_key_press(event):
         pvt_data["pvt_key_press"](event)
 
-    # Connect key and mouse events
+    # Connect the events
     screen.mousePressEvent = on_mouse_press
     screen.keyPressEvent = on_key_press
 
-    # Set screen to be focusable and accept key events
     screen.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
     screen.setAttribute(Qt.WidgetAttribute.WA_KeyCompression, True)
 

@@ -82,7 +82,7 @@ def create_demographic_form(stack):
 
     next_button = TranslatedButton("next_button")
     next_button.setEnabled(False)
-    next_button.clicked.connect(lambda: stack.setCurrentIndex(2))
+    next_button.clicked.connect(lambda: stack.setCurrentIndex(2)) # chnge to 2
     nav_layout.addWidget(next_button)
 
     layout.addLayout(nav_layout)

@@ -114,11 +114,16 @@
 
       "pvt_click_to_start_label": "Click on the screen to start",
       "pvt_click_to_start_in_display": "Click on the screen to start the test",
-      "pvt_thank_you": "Thank you for taking the test, click next to proceed.",
+      "pvt_thank_you": "Thank you for completing the test! Please take your scheduled nap now. After your nap, return and click 'Next' to continue.",
       "pvt_next_button": "Next",
 
       "ending_thankyou": "Thank you for participating in this study!",
-      "ending_exit_button": "Exit"
+      "ending_exit_button": "Exit",
+      "ending_feedback_prompt": "Please provide feedback on the experiment (if you have any):",
+      "ending_submit_feedback": "Submit Feedback",
+      "ending_thank_you_feedback": "Thank you!"
+
+
 
     },
     "fr": {
@@ -244,10 +249,15 @@
     
       "pvt_click_to_start_label": "Cliquez sur l'écran pour commencer",
       "pvt_click_to_start_in_display": "Cliquez sur l'écran pour démarrer le test",
-      "pvt_thank_you": "Merci d'avoir passé le test, cliquez sur Suivant pour continuer.",
+      "pvt_thank_you": "Merci d'avoir terminé le test ! Veuillez faire votre sieste dès maintenant. Après votre sieste, revenez et cliquez sur « Suivant » pour continuer.",
       "pvt_next_button": "Suivant",
       "ending_thankyou": "Merci d’avoir participé à cette étude !",
-      "ending_exit_button": "Quitter"
+      "ending_exit_button": "Quitter",
+      "ending_feedback_prompt": "Veuillez fournir vos commentaires sur l'expérience (si vous en avez):",
+      "ending_submit_feedback": "Soumettre les commentaires",
+      "ending_thank_you_feedback": "Merci !"
+
+      
     }
 }
   

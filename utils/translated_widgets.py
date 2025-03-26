@@ -15,6 +15,11 @@ class TranslatedLabel(QLabel):
         if alignment:
             self.setAlignment(alignment)   
 
+    def setTranslationKey(self, new_key):
+        """Update the translation key and refresh the displayed text."""
+        self.translation_key = new_key
+        self.update_text()
+
     @pyqtSlot()
     def update_text(self):
         self.setText(tr(self.translation_key))
