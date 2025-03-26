@@ -114,7 +114,7 @@
 
       "pvt_click_to_start_label": "Click on the screen to start",
       "pvt_click_to_start_in_display": "Click on the screen to start the test",
-      "pvt_thank_you": "Thank you for completing the test! Please take your scheduled nap now. After your nap, return and click 'Next' to continue.",
+      "pvt_thank_you": "Thank you for completing the test! \n\nPlease take your scheduled nap now. \nAfter your nap, return and click 'Next' to continue.",
       "pvt_next_button": "Next",
 
       "ending_thankyou": "Thank you for participating in this study!",
@@ -203,7 +203,7 @@
       "psqi_q9_very_big_problem": "Un très gros problème",
 
 
-      "psqi_q10_label": "10. Avez-vous un conjoint ou un camarade de chambre ?",
+      "psqi_q10_label": "10. Avez-vous un(e) conjoint(e) ou un(e) camarade de chambre ?",
       "psqi_q10_no_partner": "Ni l’un ni l’autre",
       "psqi_q10_other_room": "Oui, mais dans une autre chambre",
       "psqi_q10_same_room_not_bed": "Oui, dans la même chambre mais pas dans le même lit",
@@ -249,7 +249,7 @@
     
       "pvt_click_to_start_label": "Cliquez sur l'écran pour commencer",
       "pvt_click_to_start_in_display": "Cliquez sur l'écran pour démarrer le test",
-      "pvt_thank_you": "Merci d'avoir terminé le test ! Veuillez faire votre sieste dès maintenant. Après votre sieste, revenez et cliquez sur « Suivant » pour continuer.",
+      "pvt_thank_you": "Merci d'avoir terminé le test ! \n\n Veuillez faire votre sieste dès maintenant. \nAprès votre sieste, revenez et cliquez sur « Suivant » pour continuer.",
       "pvt_next_button": "Suivant",
       "ending_thankyou": "Merci d’avoir participé à cette étude !",
       "ending_exit_button": "Quitter",
