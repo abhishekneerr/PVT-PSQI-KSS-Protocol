@@ -8,12 +8,14 @@
       "male": "Male",
       "female": "Female",
       "other": "Other",
-      "country_label": "Country:",
+      "country_label": "Country of residence:",
+      "nationality_label": "Nationality:",
       "back_button": "Back",
       "submit_button": "Submit",
       "error_id_required": "Error: ID is required!",
       "error_gender_required": "Error: Please select a gender!",
       "error_country_required": "Error: Country is required!",
+      "error_nationality_required": "Error: Nationality is required!",
       "success_submission": "Data submitted, please click next to proceed.",
 
 
@@ -50,6 +52,7 @@
       "psqi_answer_less_than_once_week": "Less than once a week",
       "psqi_answer_once_twice_week": "Once or twice a week",
       "psqi_answer_three_or_more_week": "Three or more times a week",
+      "psqi_not_applicable": "Not applicable",
       
       "psqi_q6_label": "6. During the past month, how would you rate your sleep quality overall?",
       "psqi_q6_choices_very_good": "Very good",
@@ -84,6 +87,9 @@
       
       "psqi_submit_button": "Submit",
       "psqi_submit_success": "Your responses have been submitted successfully! Click Next to proceed.",
+
+      "form_error_required_questions": "Please answer all required questions. (*)",
+      "form_success_submit": "Submitted! Click Next to proceed.",
 
 
       "kss_label": "How sleepy do you feel right now?",
@@ -124,12 +130,14 @@
       "male": "Homme",
       "female": "Femme",
       "other": "Autre",
-      "country_label": "Pays :",
+      "country_label": "Pays de résidence :",
+      "nationality_label": "Nationalité :",
       "back_button": "Retour",
       "submit_button": "Soumettre",
       "error_id_required": "Erreur : l'identifiant est requis !",
       "error_gender_required": "Erreur : veuillez sélectionner un genre !",
       "error_country_required": "Erreur : le pays est requis !",
+      "error_nationality_required": "Erreur : la nationalité est requise !",
       "success_submission": "Données enregistrées, veuillez cliquer sur Suivant pour continuer.",
       "psqi_instructions_1": "INSTRUCTIONS:\n\nLes questions suivantes ont trait à vos habitudes de sommeil uniquement au cours du dernier mois.\nVos réponses doivent indiquer ce qui correspond à la majorité des jours et des nuits pendant le dernier mois.\nVeuillez répondre à toutes les questions.",
       "psqi_instructions_2": "Pour chacune des questions suivantes, cochez la réponse qui convient le mieux. Veuillez répondre à toutes les questions.",
@@ -168,6 +176,7 @@
       "psqi_answer_less_than_once_week": "Moins d’une fois par semaine",
       "psqi_answer_once_twice_week": "Une ou deux fois par semaine",
       "psqi_answer_three_or_more_week": "Trois ou quatre fois par semaine",
+      "psqi_not_applicable": "Non applicable",
 
       "psqi_q6_label": "6. Au cours du dernier mois, comment évalueriez-vous globalement la qualité de votre sommeil ?",
       "psqi_q6_choices_very_good": "Très bonne",
@@ -204,6 +213,10 @@
       "psqi_q11_e_label": "e) Autre agitation pendant votre sommeil ;",
       "psqi_q11_e_placeholder": "veuillez décrire ...",
       "psqi_q11_frequency": "À quelle fréquence au cours du dernier mois avez-vous fait face à cela ?",
+
+      "form_error_required_questions": "Veuillez remplir toutes les questions requises (*)",
+      "form_success_submit": "Soumis ! Cliquez sur Suivant pour continuer.",
+      
 
 
       "psqi_submit_button": "Soumettre",

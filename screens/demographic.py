@@ -45,7 +45,7 @@ def create_demographic_form(stack):
     gender_button_group = QButtonGroup()
 
     # 4) For each radio button, use TranslatedRadioButton
-    gender_options = ["male_label", "female_label", "other_label"]
+    gender_options = ["male", "female", "other"]
     for gender_key in gender_options:
         rb = TranslatedRadioButton(gender_key)
         gender_button_group.addButton(rb)
@@ -58,6 +58,11 @@ def create_demographic_form(stack):
     country_input = QLineEdit()
     country_input.setMaximumWidth(500)
     add_label_input_pair("country_label", country_input)
+
+    # nationality
+    nationality_input = QLineEdit()
+    nationality_input.setMaximumWidth(500)
+    add_label_input_pair("nationality_label", nationality_input)
 
     # Submission message (error or success)
     submission_message = TranslatedLabel("")  # or a plain QLabel if you prefer
@@ -95,6 +100,7 @@ def create_demographic_form(stack):
 
         age = age_input.value()
         country = country_input.text().strip()
+        nationality = nationality_input.text().strip()
 
         selected_gender = None
         for btn in gender_button_group.buttons():
@@ -109,12 +115,17 @@ def create_demographic_form(stack):
         if not country:
             submission_message.setText(tr("error_country_required"))
             return
+        
+        if not nationality:
+            submission_message.setText(tr("error_nationality_required"))
+            return
 
         demographic_data = {
             "ID": participant_id,
             "Age": age,
             "Gender": selected_gender,
-            "Country": country,
+            "Country of residence": country,
+            "Nationality": nationality
         }
 
         save_to_csv(participant_id, "demo", demographic_data)

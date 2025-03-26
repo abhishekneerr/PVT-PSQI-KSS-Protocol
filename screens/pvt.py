@@ -19,7 +19,7 @@ from PyQt6.QtCore import QTimer, Qt
 # 1) Import your translation helper
 from utils.translation_handler import tr
 
-def start_pvt_logic(label, test_duration_minutes=1, isi_min=1, isi_max=5, update_interval=10):
+def start_pvt_logic(label, test_duration_minutes=5, isi_min=1, isi_max=5, update_interval=10):
     """
     Sets up the PVT logic using the provided label widget.
     Logs both true and false key press events.
@@ -164,7 +164,7 @@ def start_pvt_logic(label, test_duration_minutes=1, isi_min=1, isi_max=5, update
         "logs": logs,
     }
 
-def create_experiment_PVT_screen(stack, trial_duration_minutes=1):
+def create_experiment_PVT_screen(stack, trial_duration_minutes=5):
     """Creates the Experiment Trials Screen (PVT), screen #5"""
     screen = QWidget()
     layout = QVBoxLayout()
@@ -201,7 +201,7 @@ def create_experiment_PVT_screen(stack, trial_duration_minutes=1):
     screen.setLayout(layout)
 
     # Start PVT logic
-    pvt_data = start_pvt_logic(counter_label, test_duration_minutes=trial_duration_minutes)
+    pvt_data = start_pvt_logic(counter_label, test_duration_minutes=5)
 
     def finish_test():
         # This is called by the one-shot timer when the test duration has elapsed.

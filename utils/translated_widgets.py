@@ -1,5 +1,5 @@
 # utils/translated_widgets.py
-from PyQt6.QtWidgets import QLabel, QPushButton, QRadioButton
+from PyQt6.QtWidgets import QLabel, QPushButton, QRadioButton, QLineEdit
 from PyQt6.QtCore import pyqtSlot
 from utils.translation_handler import tr
 from src.state import state_manager
@@ -40,3 +40,18 @@ class TranslatedRadioButton(QRadioButton):
     @pyqtSlot()
     def update_text(self):
         self.setText(tr(self.translation_key))
+
+
+class TranslatedLineEdit(QLineEdit):
+    def __init__(self, placeholder_key=None, parent=None):
+        super().__init__(parent)
+        self.placeholder_key = placeholder_key
+
+        if placeholder_key:
+            self.update_placeholder()  # Set initial placeholder
+            state_manager.languageChanged.connect(self.update_placeholder)
+
+    @pyqtSlot()
+    def update_placeholder(self):
+        if self.placeholder_key:
+            self.setPlaceholderText(tr(self.placeholder_key))

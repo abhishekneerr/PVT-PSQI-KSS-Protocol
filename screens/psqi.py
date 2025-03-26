@@ -13,7 +13,8 @@ from src.state import state_manager
 
 # Import the translation function
 from utils.translation_handler import tr
-from utils.translated_widgets import TranslatedLabel, TranslatedButton, TranslatedRadioButton
+# Import your custom translated widgets
+from utils.translated_widgets import TranslatedLabel, TranslatedButton, TranslatedRadioButton, TranslatedLineEdit
 
 def create_psqi_beforePVT_screen(stack):
     """Creates the PSQI Questionnaire Screen, screen #2"""
@@ -24,12 +25,19 @@ def create_psqi_beforePVT_screen(stack):
     input_field_map = {}
     participant_id = state_manager.get_participant_id()
 
+    #
+    # Helper function to create a text question + line edit
+    #
     def create_lineText_question(question_key, layout, placeholder_key):
-        """Helper function to create a line question with a label and input field"""
-        label_text = tr(question_key)
-        label = TranslatedLabel(label_text)
-        input_field = QLineEdit()
-        input_field.setPlaceholderText(tr(placeholder_key))
+        """
+        Creates a line question with a TranslatedLabel using the raw KEY (not tr(...)) 
+        and a QLineEdit with an optional translated placeholder.
+        """
+        # Use the key directly for TranslatedLabel
+        label = TranslatedLabel(question_key)
+        input_field = TranslatedLineEdit(placeholder_key)
+        # For placeholders, calling tr(...) is OK if you don’t need them to auto-refresh 
+        # input_field.setPlaceholderText(tr(placeholder_key))
         input_field.setMaximumWidth(600)
         layout.addWidget(label)
         layout.addWidget(input_field)
@@ -39,57 +47,68 @@ def create_psqi_beforePVT_screen(stack):
         linebreak = QLabel("\n")
         layout.addWidget(linebreak)
 
+    #
+    # Helper function to add sub-questions with standard 4 radio choices
+    #
     def add_sub_question(label_key):
-        """Helper function to add radio button questions"""
+        """Adds a label + radio group for standard 4 PSQI answer choices."""
         question_layout = QVBoxLayout()
-        label_text = tr(label_key)
-        label = TranslatedLabel(label_text)
+        # Key to TranslatedLabel
+        label = TranslatedLabel(label_key)
         question_layout.addWidget(label)
 
         radio_layout = QHBoxLayout()
         button_group = QButtonGroup()
 
-        # We'll use the standard 4 choices (Not during the past month, etc.)
-        answer_options = [
-            tr("psqi_answer_not_during_past_month"),
-            tr("psqi_answer_less_than_once_week"),
-            tr("psqi_answer_once_twice_week"),
-            tr("psqi_answer_three_or_more_week")
+        # Here we pass KEYS to TranslatedRadioButton
+        answer_keys = [
+            "psqi_answer_not_during_past_month",
+            "psqi_answer_less_than_once_week",
+            "psqi_answer_once_twice_week",
+            "psqi_answer_three_or_more_week"
         ]
-        for choice in answer_options:
-            radio_button = TranslatedRadioButton(choice)
+        for choice_key in answer_keys:
+            radio_button = TranslatedRadioButton(choice_key)
             button_group.addButton(radio_button)
             radio_layout.addWidget(radio_button)
 
         question_layout.addLayout(radio_layout)
-        input_field_map[button_group] = label  # Store mapping in dictionary
-        layout.addLayout(question_layout)  # Add to passed layout
+        input_field_map[button_group] = label  # Store mapping
+        layout.addLayout(question_layout)
 
         linebreak = QLabel("\n")
         layout.addWidget(linebreak)
         layout.update()
 
+    #
+    # Helper function for question #11 with special answer set (incl. "Not applicable")
+    #
     def add_sub_question_11(label_key):
-        """Helper function to add radio button questions for question #11 with special answer choices"""
+        """Adds a label + radio group for question #11 with 5 choices (including 'Not applicable')."""
         question_layout = QVBoxLayout()
-        label_text = tr(label_key)
-        label = TranslatedLabel(label_text)
+        label = TranslatedLabel(label_key)
         question_layout.addWidget(label)
 
         radio_layout = QHBoxLayout()
         button_group = QButtonGroup()
 
-        # Special 'Not applicable' answer set
+        # We include "Not applicable" raw text if needed,
+        # or you could add a dictionary key for it if you want it to be translated too
         answer_choices_notApplicable = [
-            tr("psqi_answer_not_during_past_month"),      # "Not during the past month"
-            "Not applicable",  # If you truly need a "Not applicable" or "No partner" option
-            tr("psqi_answer_less_than_once_week"),
-            tr("psqi_answer_once_twice_week"),
-            tr("psqi_answer_three_or_more_week")
+            "psqi_answer_not_during_past_month",
+            "psqi_not_applicable",  # We'll handle this carefully below
+            "psqi_answer_less_than_once_week",
+            "psqi_answer_once_twice_week",
+            "psqi_answer_three_or_more_week"
         ]
 
         for choice in answer_choices_notApplicable:
-            radio_button = TranslatedRadioButton(choice)
+            if choice == "not_applicable_raw":
+                # Hard-coded string if you truly need "Not applicable" un-translated
+                radio_button = TranslatedRadioButton("psqi_not_applicable") 
+            else:
+                # Otherwise, pass the key to TranslatedRadioButton
+                radio_button = TranslatedRadioButton(choice)
             button_group.addButton(radio_button)
             radio_layout.addWidget(radio_button)
 
@@ -102,9 +121,13 @@ def create_psqi_beforePVT_screen(stack):
         layout.update()
 
     # ----------------------PSQI PART 1--------------------
-    # Instruction Text with combining underlines (\u0332) and line breaks (\n) and "Instruction" in bold
-    instruction_text = tr("psqi_instructions_1")
-    instructionslabel = TranslatedLabel(instruction_text, alignment=Qt.AlignmentFlag.AlignTop)
+    # Instruction Text with combining underlines (\u0332) and line breaks (\n) 
+    # and "Instruction" in bold
+    # Instead of passing tr(...) to TranslatedLabel, pass the key directly if you have one.
+    # If you only have raw text, you'd either create a new dictionary key or do a custom approach.
+    # Suppose you have "psqi_instructions_1" in your JSON. We'll pass that key to TranslatedLabel directly:
+
+    instructionslabel = TranslatedLabel("psqi_instructions_1")
     instructionslabel.setWordWrap(True)
     instructionslabel.setStyleSheet("font-size: 14px;")
     layout.addWidget(instructionslabel)
@@ -112,7 +135,7 @@ def create_psqi_beforePVT_screen(stack):
     linebreak = QLabel("\n")
     layout.addWidget(linebreak)
 
-    # NOTE: We reference our JSON keys for each question & placeholder
+    ## NOTE: We reference our JSON keys for each question & placeholder
     part1_psqi_questions = [
         ("psqi_part1_q1_weekday", "psqi_part1_q1_placeholder"),
         ("psqi_part1_q2_weekend", "psqi_part1_q2_placeholder"),
@@ -126,9 +149,7 @@ def create_psqi_beforePVT_screen(stack):
         create_lineText_question(question_key, layout, placeholder_key)
 
     # ----------------------PSQI PART 2--------------------
-    # Additional instruction
-    instruction_text2 = tr("psqi_instructions_2")
-    instructionslabel2 = TranslatedLabel(instruction_text2, alignment=Qt.AlignmentFlag.AlignTop)
+    instructionslabel2 = TranslatedLabel("psqi_instructions_2")
     instructionslabel2.setWordWrap(True)
     instructionslabel2.setStyleSheet("font-size: 14px; font-weight: bold;")
     layout.addWidget(instructionslabel2)
@@ -137,10 +158,10 @@ def create_psqi_beforePVT_screen(stack):
     layout.addWidget(linebreak)
 
     # Fifth question: TROUBLE SLEEPING
-    psqiQuestion5B_label = TranslatedLabel(tr("psqi_part2_header"))
+    psqiQuestion5B_label = TranslatedLabel("psqi_part2_header")
     layout.addWidget(psqiQuestion5B_label)
 
-    # These sub-questions share the same 4 radio choices
+    # Sub-questions share the same 4 radio choices
     add_sub_question("psqi_part2_a")
     add_sub_question("psqi_part2_b")
     add_sub_question("psqi_part2_c")
@@ -158,21 +179,21 @@ def create_psqi_beforePVT_screen(stack):
 
     # ----------------------PSQI PART 3--------------------
     # Sixth question: SLEEP QUALITY
-    psqiQuestion6B_label = TranslatedLabel(tr("psqi_q6_label"))
+    psqiQuestion6B_label = TranslatedLabel("psqi_q6_label")
     layout.addWidget(psqiQuestion6B_label)
 
     psqiQuestion6B_radio_layout = QVBoxLayout()
     psqiQuestion6B_button_group = QButtonGroup()
 
-    # "Very good", "Fairly good", "Fairly bad", "Very bad"
-    q6_choices = [
-        tr("psqi_q6_choices_very_good"),
-        tr("psqi_q6_choices_fairly_good"),
-        tr("psqi_q6_choices_fairly_bad"),
-        tr("psqi_q6_choices_very_bad")
+    # We'll pass the KEYS for each choice
+    q6_choice_keys = [
+        "psqi_q6_choices_very_good",
+        "psqi_q6_choices_fairly_good",
+        "psqi_q6_choices_fairly_bad",
+        "psqi_q6_choices_very_bad"
     ]
-    for choice in q6_choices:
-        radio_button = TranslatedRadioButton(choice)
+    for choice_key in q6_choice_keys:
+        radio_button = TranslatedRadioButton(choice_key)
         psqiQuestion6B_button_group.addButton(radio_button)
         psqiQuestion6B_radio_layout.addWidget(radio_button)
 
@@ -183,20 +204,19 @@ def create_psqi_beforePVT_screen(stack):
     layout.addWidget(linebreak)
 
     # Seventh question
-    psqiQuestion7B_label = TranslatedLabel(tr("psqi_q7_label"))
+    psqiQuestion7B_label = TranslatedLabel("psqi_q7_label")
     layout.addWidget(psqiQuestion7B_label)
 
     psqiQuestion7B_radio_layout = QHBoxLayout()
     psqiQuestion7B_button_group = QButtonGroup()
 
-    # The same 4 standard answer choices
-    for choice in [
-        tr("psqi_answer_not_during_past_month"),
-        tr("psqi_answer_less_than_once_week"),
-        tr("psqi_answer_once_twice_week"),
-        tr("psqi_answer_three_or_more_week")
+    for choice_key in [
+        "psqi_answer_not_during_past_month",
+        "psqi_answer_less_than_once_week",
+        "psqi_answer_once_twice_week",
+        "psqi_answer_three_or_more_week"
     ]:
-        radio_button = TranslatedRadioButton(choice)
+        radio_button = TranslatedRadioButton(choice_key)
         psqiQuestion7B_button_group.addButton(radio_button)
         psqiQuestion7B_radio_layout.addWidget(radio_button)
 
@@ -207,19 +227,19 @@ def create_psqi_beforePVT_screen(stack):
     layout.addWidget(linebreak)
 
     # Eighth question
-    psqiQuestion8B_label = TranslatedLabel(tr("psqi_q8_label"))
+    psqiQuestion8B_label = TranslatedLabel("psqi_q8_label")
     layout.addWidget(psqiQuestion8B_label)
 
     psqiQuestion8B_radio_layout = QHBoxLayout()
     psqiQuestion8B_button_group = QButtonGroup()
 
-    for choice in [
-        tr("psqi_answer_not_during_past_month"),
-        tr("psqi_answer_less_than_once_week"),
-        tr("psqi_answer_once_twice_week"),
-        tr("psqi_answer_three_or_more_week")
+    for choice_key in [
+        "psqi_answer_not_during_past_month",
+        "psqi_answer_less_than_once_week",
+        "psqi_answer_once_twice_week",
+        "psqi_answer_three_or_more_week"
     ]:
-        radio_button = TranslatedRadioButton(choice)
+        radio_button = TranslatedRadioButton(choice_key)
         psqiQuestion8B_button_group.addButton(radio_button)
         psqiQuestion8B_radio_layout.addWidget(radio_button)
 
@@ -230,19 +250,19 @@ def create_psqi_beforePVT_screen(stack):
     layout.addWidget(linebreak)
 
     # Ninth question
-    psqiQuestion9B_label = TranslatedLabel(tr("psqi_q9_label"))
+    psqiQuestion9B_label = TranslatedLabel("psqi_q9_label")
     layout.addWidget(psqiQuestion9B_label)
 
     psqiQuestion9B_radio_layout = QVBoxLayout()
     psqiQuestion9B_button_group = QButtonGroup()
 
-    for choice in [
-        tr("psqi_q9_no_problem"),
-        tr("psqi_q9_slight_problem"),
-        tr("psqi_q9_somewhat_problem"),
-        tr("psqi_q9_very_big_problem")
+    for choice_key in [
+        "psqi_q9_no_problem",
+        "psqi_q9_slight_problem",
+        "psqi_q9_somewhat_problem",
+        "psqi_q9_very_big_problem"
     ]:
-        radio_button = TranslatedRadioButton(choice)
+        radio_button = TranslatedRadioButton(choice_key)
         psqiQuestion9B_button_group.addButton(radio_button)
         psqiQuestion9B_radio_layout.addWidget(radio_button)
 
@@ -254,19 +274,19 @@ def create_psqi_beforePVT_screen(stack):
 
     # ----------------------PSQI PART 4--------------------
     # Tenth question
-    psqiQuestion10B_label = TranslatedLabel(tr("psqi_q10_label"))
+    psqiQuestion10B_label = TranslatedLabel("psqi_q10_label")
     layout.addWidget(psqiQuestion10B_label)
 
     psqiQuestion10B_radio_layout = QVBoxLayout()
     psqiQuestion10B_button_group = QButtonGroup()
 
-    for choice in [
-        tr("psqi_q10_no_partner"),
-        tr("psqi_q10_other_room"),
-        tr("psqi_q10_same_room_not_bed"),
-        tr("psqi_q10_same_bed")
+    for choice_key in [
+        "psqi_q10_no_partner",
+        "psqi_q10_other_room",
+        "psqi_q10_same_room_not_bed",
+        "psqi_q10_same_bed"
     ]:
-        radio_button = TranslatedRadioButton(choice)
+        radio_button = TranslatedRadioButton(choice_key)
         psqiQuestion10B_button_group.addButton(radio_button)
         psqiQuestion10B_radio_layout.addWidget(radio_button)
 
@@ -276,7 +296,7 @@ def create_psqi_beforePVT_screen(stack):
     linebreak = QLabel("\n")
     layout.addWidget(linebreak)
 
-    psqiQuestion11B_label = TranslatedLabel(tr("psqi_q11_label"))
+    psqiQuestion11B_label = TranslatedLabel("psqi_q11_label")
     layout.addWidget(psqiQuestion11B_label)
 
     add_sub_question_11("psqi_q11_a")
@@ -285,9 +305,10 @@ def create_psqi_beforePVT_screen(stack):
     add_sub_question_11("psqi_q11_d")
 
     # Special case for 11.e (text input + radio buttons)
-    psqiQuestion11eB_label = QLabel(tr("psqi_q11_e_label"))
-    psqiQuestion11eB_input = QLineEdit()
-    psqiQuestion11eB_input.setPlaceholderText(tr("psqi_q11_e_placeholder"))
+    # If you want a fully dynamic placeholder, you'd also need a custom TranslatedLineEdit
+    psqiQuestion11eB_label = TranslatedLabel("psqi_q11_e_label")
+    psqiQuestion11eB_input = TranslatedLineEdit("psqi_q11_e_placeholder")
+    # psqiQuestion11eB_input.setPlaceholderText(tr("psqi_q11_e_placeholder"))
     layout.addWidget(psqiQuestion11eB_label)
     layout.addWidget(psqiQuestion11eB_input)
     input_field_map[psqiQuestion11eB_input] = psqiQuestion11eB_label
@@ -311,53 +332,55 @@ def create_psqi_beforePVT_screen(stack):
     submit_button = QPushButton(tr("psqi_submit_button"))
 
     def handle_submit():
-        # Collect the data from the form (this is an example structure)
+        # Collect the data from the form
         participant_id = state_manager.get_participant_id()
         form_data = {}
 
-        # Call the submit_form_check function as per your original logic
+        # Validate required fields
         submit_form_check(input_field_map, submission_message)
         
-        # Check if there are any errors from submit_form_check
-        if "Please fill all required questions (*)" in submission_message.text():
-            return  # Do not proceed with saving if validation failed
+        # If validation fails, submission_message includes "Please fill all..."
+        if "Please fill all required questions (*" in submission_message.text():
+            return
+        
+        if "Veuillez remplir toutes les questions requises (*)" in submission_message.text():
+            return
 
-        # Collect the data for text inputs
+        # Collect data for text inputs
         for input_field, label in input_field_map.items():
             if isinstance(input_field, QLineEdit):
                 form_data[label.text()] = input_field.text()
 
-        # Collect the data for radio button selections
+        # Collect data for radio button selections
         for button_group, label in input_field_map.items():
             if isinstance(button_group, QButtonGroup):
                 selected_button = button_group.checkedButton()
                 if selected_button:
                     form_data[label.text()] = selected_button.text()
 
-        # If participant_id is not set, show an error
         if not participant_id:
             submission_message.setText("Error: ID is required!")
             return
 
-        # Save the form data to CSV
+        # Save the form data
         questionnaire_type = "PSQI_B"
         save_to_csv(participant_id, questionnaire_type, form_data)
 
-        # Display success message
+        # Show success message
         submission_message.setText(tr("psqi_submit_success"))
-        next_button.setEnabled(True)  # Enable the "Next" button
+        next_button.setEnabled(True)
 
     submit_button.clicked.connect(handle_submit)
     nav_layout.addWidget(submit_button)
 
-    next_button = QPushButton(tr("next_button"))  # If you want "Next" also localized, use tr("next_button")
+    next_button = QPushButton(tr("next_button"))
     next_button.setEnabled(False)
     next_button.clicked.connect(lambda: stack.setCurrentIndex(3))
     nav_layout.addWidget(next_button)
 
     layout.addLayout(nav_layout)
 
-    # Scrollable screen
+    # Make the screen scrollable
     scroll_area = QScrollArea()
     scroll_widget = QWidget()
     scroll_widget.setLayout(layout)
@@ -369,5 +392,3 @@ def create_psqi_beforePVT_screen(stack):
     screen.setLayout(screen_layout)
 
     return screen
-
-
