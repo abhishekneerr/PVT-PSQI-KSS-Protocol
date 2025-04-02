@@ -110,11 +110,12 @@
       "kss_fill_required": "Please fill all required questions (*)",
       "kss_submit_success": "Your responses have been submitted successfully! Click Next to proceed.",
       
-      "pvt_instructions_text": "In this section, you will complete a reaction time task.\n\nWhen the counter appears on the screen, press the SPACEBAR as quickly as possible.\n\nPress the Next button to begin the task.",
+      "pvt_instructions_text": "In this section, you will perform a reaction time task \n\n Once the counter appears, press the SPACEBAR as quickly as possible.\n\n Please do not move your head during the task. \n\n Press Next to begin the task.",
 
       "pvt_click_to_start_label": "Click on the screen to start",
       "pvt_click_to_start_in_display": "Click on the screen to start the test",
-      "pvt_thank_you": "Thank you for completing the test! \n\nPlease take your scheduled nap now. \nAfter your nap, return and click 'Next' to continue.",
+      "pvt_b_thank_you": "Thank you for completing the test! \n\nPlease take your scheduled nap now. \nAfter your nap, return and click 'Next' to continue.",
+      "pvt_a_thank_you": "Thank you for completing the test! \n\n Please click 'Next' to continue.",
       "pvt_next_button": "Next",
 
       "ending_thankyou": "Thank you for participating in this study!",
@@ -245,11 +246,12 @@
       "kss_fill_required": "Veuillez remplir toutes les questions requises (*)",
       "kss_submit_success": "Vos réponses ont été enregistrées avec succès ! Cliquez sur Suivant pour continuer.",
 
-      "pvt_instructions_text": "Dans cette section, vous allez effectuer un test de temps de réaction.\n\nLorsque le compteur apparaît à l’écran, appuyez sur la BARRE D’ESPACE le plus rapidement possible.\n\nAppuyez sur le bouton Suivant pour commencer le test.",
-    
+      "pvt_instructions_text": "Dans cette section, vous effectuerez une tâche de temps de réaction. \n\n Une fois le compteur affiché, appuyez sur la barre d'espace le plus rapidement possible.\n\n Veuillez ne pas bouger la tête pendant la tâche. \n\n Appuyez sur Suivant pour commencer la tâche.",
+
       "pvt_click_to_start_label": "Cliquez sur l'écran pour commencer",
       "pvt_click_to_start_in_display": "Cliquez sur l'écran pour démarrer le test",
-      "pvt_thank_you": "Merci d'avoir terminé le test ! \n\n Veuillez faire votre sieste dès maintenant. \nAprès votre sieste, revenez et cliquez sur « Suivant » pour continuer.",
+      "pvt_b_thank_you": "Merci d'avoir terminé le test ! \n\n Veuillez faire votre sieste dès maintenant. \nAprès votre sieste, revenez et cliquez sur « Suivant » pour continuer.",
+      "pvt_a_thank_you": "Merci d'avoir terminé le test ! \n\n Veuillez cliquer sur « Suivant » pour continuer.",
       "pvt_next_button": "Suivant",
       "ending_thankyou": "Merci d’avoir participé à cette étude !",
       "ending_exit_button": "Quitter",

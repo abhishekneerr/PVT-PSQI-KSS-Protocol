@@ -128,7 +128,7 @@ def start_pvt_logic(label, test_duration_minutes=1, isi_min=1, isi_max=5, update
                 }
                 logs.append(log_entry)
                 # Save the latest entry immediately.
-                save_to_csv(participant_id, "PVT", log_entry)
+                save_to_csv(participant_id, "PVT_B", log_entry)
                 print(f"True press: Reaction time = {reaction_time} ms. Log: {log_entry}")
                 # Restart the trial.
                 state["trial_state"] = "waiting"
@@ -144,7 +144,7 @@ def start_pvt_logic(label, test_duration_minutes=1, isi_min=1, isi_max=5, update
                 }
                 logs.append(log_entry)
                 # Save the latest entry immediately.
-                save_to_csv(participant_id, "PVT", log_entry)
+                save_to_csv(participant_id, "PVT_B", log_entry)
                 print(f"False press: Key pressed during inactive period. Log: {log_entry}")
 
 
@@ -170,7 +170,7 @@ def start_pvt_logic(label, test_duration_minutes=1, isi_min=1, isi_max=5, update
         "timer": timer,
         "logs": logs,
     }
-def create_experiment_PVT_screen(stack, trial_duration_minutes=1):
+def create_experiment_PVT_screen_before(stack, trial_duration_minutes=10): # CHANGE here for trial duration
     """Creates the Experiment Trials Screen (PVT), screen #5"""
     screen = QWidget()
     layout = QVBoxLayout()

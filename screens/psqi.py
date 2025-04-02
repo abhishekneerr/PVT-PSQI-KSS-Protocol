@@ -296,28 +296,30 @@ def create_psqi_beforePVT_screen(stack):
     linebreak = QLabel("\n")
     layout.addWidget(linebreak)
 
-    psqiQuestion11B_label = TranslatedLabel("psqi_q11_label")
-    layout.addWidget(psqiQuestion11B_label)
+    # #####€€€€$$$$$ removed after discussion with Thomas #####€€€€$$$$$
 
-    add_sub_question_11("psqi_q11_a")
-    add_sub_question_11("psqi_q11_b")
-    add_sub_question_11("psqi_q11_c")
-    add_sub_question_11("psqi_q11_d")
+    # psqiQuestion11B_label = TranslatedLabel("psqi_q11_label")
+    # layout.addWidget(psqiQuestion11B_label)
+
+    # add_sub_question_11("psqi_q11_a")
+    # add_sub_question_11("psqi_q11_b")
+    # add_sub_question_11("psqi_q11_c")
+    # add_sub_question_11("psqi_q11_d")
 
     # Special case for 11.e (text input + radio buttons)
     # If you want a fully dynamic placeholder, you'd also need a custom TranslatedLineEdit
-    psqiQuestion11eB_label = TranslatedLabel("psqi_q11_e_label")
-    psqiQuestion11eB_input = TranslatedLineEdit("psqi_q11_e_placeholder")
-    # psqiQuestion11eB_input.setPlaceholderText(tr("psqi_q11_e_placeholder"))
-    layout.addWidget(psqiQuestion11eB_label)
-    layout.addWidget(psqiQuestion11eB_input)
-    input_field_map[psqiQuestion11eB_input] = psqiQuestion11eB_label
+    # psqiQuestion11eB_label = TranslatedLabel("psqi_q11_e_label")
+    # psqiQuestion11eB_input = TranslatedLineEdit("psqi_q11_e_placeholder")
+    # # psqiQuestion11eB_input.setPlaceholderText(tr("psqi_q11_e_placeholder"))
+    # layout.addWidget(psqiQuestion11eB_label)
+    # layout.addWidget(psqiQuestion11eB_input)
+    # input_field_map[psqiQuestion11eB_input] = psqiQuestion11eB_label
 
-    # Add radio button choices for 11.e
-    add_sub_question_11("psqi_q11_frequency")
+    # # Add radio button choices for 11.e
+    # add_sub_question_11("psqi_q11_frequency")
 
-    linebreak = QLabel("\n")
-    layout.addWidget(linebreak)
+    # linebreak = QLabel("\n")
+    # layout.addWidget(linebreak)
 
     # .--------------End of psqi questionnaire-----------------.
 

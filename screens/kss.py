@@ -206,7 +206,7 @@ def create_kss_afterPVT_screen(stack):
 
     next_button = TranslatedButton("kss_next_button")
     next_button.setEnabled(False)
-    next_button.clicked.connect(lambda: stack.setCurrentIndex(7))
+    next_button.clicked.connect(lambda: stack.setCurrentIndex(8))
     nav_layout.addWidget(next_button)
 
     layout.addLayout(nav_layout)
