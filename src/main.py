@@ -8,10 +8,12 @@ sys.path.append(project_root)
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QStackedWidget
 from screens.welcome import create_welcome_screen
 from screens.demographic import create_demographic_form
-from screens.psqi import create_psqi_beforePVT_screen, create_psqi_afterPVT_screen
+from screens.psqi import create_psqi_beforePVT_screen
+# from screens.psqi import create_psqi_afterPVT_screen
 from screens.kss import create_kss_beforePVT_screen, create_kss_afterPVT_screen
 from screens.pvt_instructions import create_pvt_instructions_screen
-from screens.pvt import create_experiment_PVT_screen
+from screens.pvt_b import create_experiment_PVT_screen_before
+from screens.pvt_a import create_experiment_PVT_screen_after
 from screens.ending import create_ending_screen
 
 
@@ -27,15 +29,16 @@ def create_main_window():
     window.showFullScreen()     #full screen mode
     
     stack = QStackedWidget()
-    stack.addWidget(create_welcome_screen(stack))
-    stack.addWidget(create_demographic_form(stack))
-    stack.addWidget(create_psqi_beforePVT_screen(stack))
-    stack.addWidget(create_kss_beforePVT_screen(stack))
-    stack.addWidget(create_pvt_instructions_screen(stack))
-    stack.addWidget(create_experiment_PVT_screen(stack))
-    stack.addWidget(create_kss_afterPVT_screen(stack))
-    stack.addWidget(create_psqi_afterPVT_screen(stack))
-    stack.addWidget(create_ending_screen(stack))
+    stack.addWidget(create_welcome_screen(stack)) #0
+    stack.addWidget(create_demographic_form(stack)) #1
+    stack.addWidget(create_psqi_beforePVT_screen(stack)) #2
+    stack.addWidget(create_kss_beforePVT_screen(stack)) #3
+    stack.addWidget(create_pvt_instructions_screen(stack)) #4
+    stack.addWidget(create_experiment_PVT_screen_before(stack)) #5
+    stack.addWidget(create_experiment_PVT_screen_after(stack)) #6
+    stack.addWidget(create_kss_afterPVT_screen(stack)) #7
+    # stack.addWidget(create_psqi_afterPVT_screen(stack))
+    stack.addWidget(create_ending_screen(stack)) #8
 
     layout = QVBoxLayout()
     layout.addWidget(stack)
