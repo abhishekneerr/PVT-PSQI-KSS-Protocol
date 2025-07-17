@@ -9,7 +9,7 @@ def create_welcome_screen(stack):
     layout = QVBoxLayout()
 
     language_selector = QComboBox()
-    language_selector.addItems(["English", "Français"])
+    language_selector.addItems(["English", "Français", "Svenska"])
     language_selector.setStyleSheet("font-size: 12px; padding: 5px; max-width: 100px;")
     language_selector.setFixedWidth(100)
     
@@ -36,7 +36,12 @@ def create_welcome_screen(stack):
 
     def on_language_change():
         selected = language_selector.currentText()
-        lang_code = "fr" if selected == "Français" else "en"
+        if selected == "Français":
+            lang_code = "fr"
+        elif selected == "Svenska":
+            lang_code = "sv"
+        else:
+            lang_code = "en"
         state_manager.set_language(lang_code)
         # No manual setText calls needed—auto-refresh widgets pick it up
 

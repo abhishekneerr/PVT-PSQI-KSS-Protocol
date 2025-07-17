@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QTextEdit, QHBoxLayout
+    QWidget, QVBoxLayout, QTextEdit, QHBoxLayout, QLabel
 )
 import sys
 import csv
